@@ -1,0 +1,9 @@
+.git
+.cache
+.idea
+.pytest_cache
+*.pyc
+file_folder/*
+file_folder/*/*
+utils/test_utils/test_file_folder/*
+utils/test_utils/test_file_folder/*/*

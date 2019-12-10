@@ -1,0 +1,28 @@
+FROM ubuntu:18.04
+
+MAINTAINER Iain Mackie
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    build-essential \
+    git \
+    wget vim \
+    software-properties-common \
+    locales
+
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+
+#RUN add-apt-repository -y ppa:deadsnakes/ppa
+
+# Anaconda installing
+RUN wget https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
+RUN bash Anaconda3-5.0.1-Linux-x86_64.sh -b
+RUN rm Anaconda3-5.0.1-Linux-x86_64.sh
+
+RUN pip3 install --force-reinstall --upgrade pip
+RUN pip install pytest
+
+
+

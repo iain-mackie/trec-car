@@ -1,6 +1,5 @@
 
-from urllib import request
-import lzma
+import urllib.request
 import tarfile
 import os
 
@@ -10,7 +9,7 @@ from utils.static import dataset_list
 def download_file(url, path):
 
     print('Downloading file from URL: {}'.format(url))
-    request.urlretrieve(url, path)
+    urllib.request.urlretrieve(url, path)
 
     if os.path.exists(path=path):
         print('Saved file to path: {}'.format(path))
