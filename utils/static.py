@@ -30,5 +30,22 @@ Wiki = Dataset(
                 os.path.join(file_folder_path, 'unprocessedAllButBenchmark.v2.1', 'unprocessedAllButBenchmark.Y2.cbor')],
 )
 
+Train = Dataset(
+    name='Train',
+    url='http://trec-car.cs.unh.edu/datareleases/v2.0/train.v2.0.tar.xz',
+    download_path=os.path.join(file_folder_path, 'train.v2.0.tar.xz'),
+    unpack_dir_path=file_folder_path,
+    file_path_list=[os.path.join(file_folder_path, 'train.v2.0', '')],
+)
+
+Benchmark = Dataset(
+    name='Train',
+    url='http://trec-car.cs.unh.edu/datareleases/v2.0/benchmarkY1-test.v2.0.tar.xz',
+    download_path=os.path.join(file_folder_path, 'benchmarkY1-test.v2.0.tar.xz'),
+    unpack_dir_path=file_folder_path,
+    file_path_list=[os.path.join(file_folder_path, 'benchmarkY1-test.v2.0', '')],
+)
+
+
 
 dataset_list = [WikiParagrahs, Wiki]
