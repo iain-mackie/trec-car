@@ -44,7 +44,7 @@ def print_paragraphs(path=WikiParagrahs.file_path_list[0], limit=1):
             counter += 1
 
 
-def print_articles(path=Wiki.file_path_list[0], limit=1):
+def print_articles(path=Wiki.file_path_list[5], limit=1):
 
     print('*** reading {} articles from file: {} ***'.format(limit, path))
     with open(path, 'rb') as f:
@@ -53,7 +53,6 @@ def print_articles(path=Wiki.file_path_list[0], limit=1):
 
         for p in iter_pages(f):
 
-            print()
             print('PRINTING PAGE {}'.format(counter))
 
             print('----------------------- RAW PAGE  -----------------------')
@@ -117,7 +116,7 @@ def print_outlines(path='', limit=1):
                 print('flat headings= ', ["/".join([str(section.heading) for section in sectionpath]) for sectionpath in
                                           p.flat_headings_list()])
 
-        if counter >= limit:
-                    break
+            if counter >= limit:
+                break
 
-        counter += 1
+            counter += 1

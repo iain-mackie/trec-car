@@ -21,8 +21,13 @@ Wiki = Dataset(
     url='http://trec-car.cs.unh.edu/datareleases/v2.1/unprocessedAllButBenchmark.v2.1.tar.xz',
     download_path=os.path.join(file_folder_path, 'unprocessedAllButBenchmark.v2.1.tar.xz'),
     unpack_dir_path=file_folder_path,
-    file_path_list=[os.path.join(file_folder_path, 'paragraphCorpus', 'fold-4-unprocessedAllButBenchmark.Y2.cbor'),
-               os.path.join(file_folder_path, 'paragraphCorpus', 'unprocessedAllButBenchmark.Y2.cbor')],
+    file_path_list=[
+                os.path.join(file_folder_path, 'unprocessedAllButBenchmark.v2.1', 'fold-0-unprocessedAllButBenchmark.Y2.cbor'),
+                os.path.join(file_folder_path, 'unprocessedAllButBenchmark.v2.1', 'fold-1-unprocessedAllButBenchmark.Y2.cbor'),
+                os.path.join(file_folder_path, 'unprocessedAllButBenchmark.v2.1', 'fold-2-unprocessedAllButBenchmark.Y2.cbor'),
+                os.path.join(file_folder_path, 'unprocessedAllButBenchmark.v2.1', 'fold-3-unprocessedAllButBenchmark.Y2.cbor'),
+                os.path.join(file_folder_path, 'unprocessedAllButBenchmark.v2.1', 'fold-4-unprocessedAllButBenchmark.Y2.cbor'),
+                os.path.join(file_folder_path, 'unprocessedAllButBenchmark.v2.1', 'unprocessedAllButBenchmark.Y2.cbor')],
 )
 
 
