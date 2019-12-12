@@ -8,13 +8,17 @@ from utils.static import dataset_list
 
 def download_file(url, path):
 
-    print('Downloading file from URL: {}'.format(url))
-    request.urlretrieve(url, path)
-
     if os.path.exists(path=path):
-        print('Saved file to path: {}'.format(path))
+        print('File already exists - will not download again (delete manually if required)')
+
     else:
-        print('ERROR - file has not correctly written')
+        print('Downloading file from URL: {}'.format(url))
+        request.urlretrieve(url, path)
+
+        if os.path.exists(path=path):
+            print('Saved file to path: {}'.format(path))
+        else:
+            print('ERROR - file has not correctly written')
 
 
 def unpack_tar_file(read_path, write_dir_path, file_path_list):

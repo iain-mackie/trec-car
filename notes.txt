@@ -1,11 +1,26 @@
-Docker setup
+Docker setup - Ubuntu
 ------------
 sudo apt install docker.io + y
 sudo systemctl start docker
 sudo systemctl enable docker
 
+Docker setup - Mac OS
+-----------
+brew cask install docker
+Can't run natively: https://stackoverflow.com/questions/44084846/cannot-connect-to-the-docker-daemon-on-macos
+brew install docker-machine docker
+
 Pyserini setup
 ------------
 sudo apt install default-jre
 pip install pyserini
-sudo apt-get install openjdk-8*
+sudo apt-get install openjdk-8
+
+TREC CAR
+-----------
+url: http://trec-car.cs.unh.edu/
+
+Python supporting tools
+-----------
+https://github.com/TREMA-UNH/trec-car-tools
+python setup.py install in python3/ file

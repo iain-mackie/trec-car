@@ -1,0 +1,45 @@
+FROM ubuntu:18.04
+
+MAINTAINER Carlos Gemmell
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    build-essential \
+    git \
+    wget vim \
+    software-properties-common \
+    locales
+
+RUN locale-gen en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+
+RUN add-apt-repository -y ppa:deadsnakes/ppa
+
+RUN apt-get install -y python3 \
+    python3-pip \
+    python-setuptools
+
+RUN pip3 install --force-reinstall --upgrade pip
+RUN pip install pytest
+
+RUN apt-get install -y curl nodejs npm
+
+# Pylucene setup
+RUN apt-get install -y default-jdk ant
+
+WORKDIR /usr/lib/jvm/default-java/jre/lib
+RUN ln -s ../../lib amd64
+
+WORKDIR /usr/src/pylucene
+RUN curl https://dist.apache.org/repos/dist/dev/lucene/pylucene/8.3.0-rc1/pylucene-8.3.0-src.tar.gz \
+    | tar -xz --strip-components=1
+RUN cd jcc \
+    && NO_SHARED=1 JCC_JDK=/usr/lib/jvm/default-java python3 setup.py install
+RUN make all install JCC='python3 -m jcc' ANT=ant PYTHON=python NUM_FILES=8
+
+WORKDIR ..
+RUN rm -rf pylucene
+
+
+
