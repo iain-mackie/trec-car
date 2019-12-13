@@ -1,5 +1,6 @@
 from index.preprocessing import extract_paragraphs, extract_queries
 from index.ranking import retrieve_n_documents
+from pyserini.search.pysearch import SimpleSearcher
 
 from utils.static import WikiParagrahs, Wiki
 

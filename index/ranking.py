@@ -4,6 +4,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from string import punctuation
 
+
 def format_strings(s):
 
     words = word_tokenize(s.lower())

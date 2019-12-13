@@ -4,3 +4,4 @@ cbor==1.0
 # nltk
 # snorkel torch
 ipykernel
+pyserini

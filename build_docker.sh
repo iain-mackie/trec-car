@@ -1,6 +1,6 @@
 # check command line inputs and map to dockerfile paths
 if [ "$1" = "cpu" ]; then
-  DOCKER_PATH="./Dockerfile.cpu"
+  DOCKER_PATH="./Dockerfile_carlos.cpu"
   echo "Building cpu dockerfile from: " DOCKER_PATH;
 
 elif [ "$1" = "gpu" ]; then

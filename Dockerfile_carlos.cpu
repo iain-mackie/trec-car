@@ -21,9 +21,16 @@ RUN apt-get install -y python3 \
     python-setuptools
 
 RUN pip3 install --force-reinstall --upgrade pip
-RUN pip install pytest
+RUN pip install tensorflow==2.0.0-rc1 tensorflow_datasets
+RUN pip install torch torchvision
+RUN pip install jupyter jupyterlab tokenizer
+RUN pip install torchtext pytorch-nlp nltk line_profiler runipy dotmap
 
 RUN apt-get install -y curl nodejs npm
+RUN jupyter labextension install jupyterlab-drawio
+
+RUN git config --global user.email "aquaktus@yahoo.co.uk"
+RUN git config --global user.name "aquaktus"
 
 # Pylucene setup
 RUN apt-get install -y default-jdk ant
