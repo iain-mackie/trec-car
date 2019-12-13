@@ -43,7 +43,7 @@ Benchmark = Dataset(
     url='http://trec-car.cs.unh.edu/datareleases/v2.0/benchmarkY1-test.v2.0.tar.xz',
     download_path=os.path.join(file_folder_path, 'benchmarkY1-test.v2.0.tar.xz'),
     unpack_dir_path=file_folder_path,
-    file_path_list=[os.path.join(file_folder_path, 'benchmarkY1-test.v2.0', '')],
+    file_path_list=[os.path.join(file_folder_path, 'TODO')], #TODO
 )
 
 

@@ -1,3 +1,6 @@
 pytest==5.3.1
 cbor==1.0
 # bm25?
+# nltk
+# snorkel torch
+ipykernel

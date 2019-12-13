@@ -2,7 +2,6 @@
 from utils.static import WikiParagrahs, Wiki
 from trec_car.read_data import iter_paragraphs, ParaText, ParaLink, iter_pages
 
-
 def extract_queries(path=Wiki.file_path_list[0], page_limit=1):
 
     queries = []
@@ -17,8 +16,7 @@ def extract_queries(path=Wiki.file_path_list[0], page_limit=1):
             page_name = p.page_name
 
             if len(p.outline()) > 0:
-
-                queries += [[page_name + ' ' + " ".join([str(section.heading) for section in section_path])] for section_path in p.flat_headings_list()]
+                queries += [[page_name + ' ' + " ".join([str(section.heading) for section in section_path])] for section_path in p.flat_headings_list()][0]
 
             if counter >= page_limit:
                 break
@@ -39,7 +37,7 @@ def extract_paragraphs(path=WikiParagrahs.file_path_list[0], paragraph_limit=1):
 
         for p in iter_paragraphs(f):
 
-            paragraphs += [p.get_text()]
+            paragraphs.append(p.get_text())
 
             if counter >= paragraph_limit:
                 break
