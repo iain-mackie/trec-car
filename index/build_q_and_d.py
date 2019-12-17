@@ -19,7 +19,7 @@ def build_q(read_path=Wiki.file_path_list[0], write_path=write_q_path, page_limi
 
                 page_name = p.page_name
 
-                q_list = [page_name + "/" + "/".join([str(section.heading) for section in sectionpath]) for sectionpath in p.flat_headings_list()]
+                q_list = [page_name + " " + " ".join([str(section.heading) for section in sectionpath]) for sectionpath in p.flat_headings_list()]
 
                 for q in q_list:
 
