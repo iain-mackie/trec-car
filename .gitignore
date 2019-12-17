@@ -2,5 +2,3 @@
 .pytest_cache
 .ipynb_checkpoints
 *.pyc
-file_folder/*
-utils/test_utils/test_file_folder/*
