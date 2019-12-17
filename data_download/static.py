@@ -2,7 +2,7 @@
 import os
 from collections import namedtuple
 
-file_folder_path = os.path.join(os.path.abspath(os.path.join(__file__,"../..")), 'file_folder')
+file_folder_path = os.path.join(os.path.abspath(os.path.join(__file__,"../..")), 'file_folder', '1_raw_data')
 
 
 # define metadata for each dataset in a namedtuple
@@ -35,7 +35,7 @@ Train = Dataset(
     url='http://trec-car.cs.unh.edu/datareleases/v2.0/train.v2.0.tar.xz',
     download_path=os.path.join(file_folder_path, 'train.v2.0.tar.xz'),
     unpack_dir_path=file_folder_path,
-    file_path_list=[os.path.join(file_folder_path, 'train.v2.0', '')],
+    file_path_list=[os.path.join(file_folder_path, 'train.v2.0', '')], #TODO
 )
 
 Benchmark = Dataset(

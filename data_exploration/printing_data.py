@@ -1,5 +1,5 @@
 
-from utils.static import Wiki, WikiParagrahs
+from data_download.static import Wiki, WikiParagrahs
 from trec_car.read_data import iter_paragraphs, iter_pages, iter_annotations, ParaText, ParaLink
 
 

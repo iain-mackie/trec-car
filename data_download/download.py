@@ -3,7 +3,7 @@ from urllib import request
 import tarfile
 import os
 
-from utils.static import dataset_list
+from data_download.static import dataset_list
 
 
 def download_file(url, path):

@@ -10,22 +10,22 @@ def test_tar_xz_url():
 
 @pytest.fixture
 def test_tar_xz_path():
-    return os.path.join(os.path.abspath(os.path.join(__file__,"../")), 'test_utils', 'test_file_folder', 'paragraphCorpus.v2.0.tar.xz')
+    return os.path.join(os.path.abspath(os.path.join(__file__,"../")), 'test_utils', 'test_file_folder', '1_raw_data', 'paragraphCorpus.v2.0.tar.xz')
 
 
 @pytest.fixture
 def test_tar_xz_unpack_dir():
-    return os.path.join(os.path.abspath(os.path.join(__file__,"../")), 'test_utils', 'test_file_folder')
+    return os.path.join(os.path.abspath(os.path.join(__file__,"../")), 'test_utils', 'test_file_folder', '1_raw_data')
 
 
 @pytest.fixture
 def test_unpack_file_path():
-    return [os.path.join(os.path.abspath(os.path.join(__file__,"../")), 'test_utils', 'test_file_folder', 'paragraphCorpus', 'dedup.articles-paragraphs.cbor')]
+    return [os.path.join(os.path.abspath(os.path.join(__file__,"../")), 'test_utils', 'test_file_folder', '1_raw_data', 'paragraphCorpus', 'dedup.articles-paragraphs.cbor')]
 
 
 @pytest.fixture
 def test_Dataset(test_tar_xz_url, test_tar_xz_path, test_tar_xz_unpack_dir, test_unpack_file_path):
-    from utils.static import Dataset
+    from data_download.static import Dataset
     return Dataset(
         name='Test dataset',
         url=test_tar_xz_url,

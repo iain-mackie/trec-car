@@ -1,16 +1,18 @@
-from index.preprocessing import extract_paragraphs, extract_queries
-from index.ranking import retrieve_n_documents
-from pyserini.search.pysearch import SimpleSearcher
 
-from utils.static import WikiParagrahs, Wiki
+from data_download.download import download_and_unpack_dataset
+from data_download.static import WikiParagrahs, Wiki, dataset_list
+
+from index.build_q_and_d import build_q, build_d
+from index.static import write_q_path, write_d_path
+
 
 if __name__ == "__main__":
 
-    queries = extract_queries(path=Wiki.file_path_list[0], page_limit=1000000)
+    #download_and_unpack_dataset(D=Wiki)
+    #
+    build_q(read_path=Wiki.file_path_list[5], write_path=write_q_path, page_limit=1500)
 
-    paragraphs = extract_paragraphs(path=WikiParagrahs.file_path_list[0], paragraph_limit=1000000)
-
-    retrieve_n_documents(queries=queries, corpus=paragraphs, n=1)
+    build_d(read_path=WikiParagrahs.file_path_list[0], write_path=write_d_path, paragraph_limit=100)
 
 
 

@@ -1,4 +1,8 @@
 
+
+from index.static import write_d_path, write_d_norm_path, write_q_path, write_q_norm_path
+
+
 from rank_bm25 import BM25Okapi
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
@@ -46,7 +50,13 @@ def retrieve_n_documents(queries, corpus, n=1):
     return documents
 
 
-def normalise_q():
+def normalise_q(read_path=write_q_path, write_path=write_q_norm_path):
+
+    with open(read_path 'rb') as f_read:
+        with open(write_path, 'w') as f_write:
+
+            
+
 
 
 
