@@ -41,7 +41,7 @@ def build_d(read_path=WikiParagrahs.file_path_list[0], write_path=write_d_path, 
 
             for p in iter_paragraphs(f_read):
 
-                if counter % 1000 == 0:
+                if counter % 10000 == 0:
                     print('{} / {} of paragraphs processed'.format(counter, paragraph_limit))
 
                 f_write.write(p.para_id + '\t' + p.get_text() + '\n')

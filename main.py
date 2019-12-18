@@ -12,7 +12,7 @@ if __name__ == "__main__":
 
     #download_and_unpack_dataset(D=Wiki)
     #
-    build_q(read_path=Wiki.file_path_list[5], write_path=write_q_path, page_limit=1000)
+    build_q(read_path=Wiki.file_path_list[5], write_path=write_q_path, page_limit=500)
 
     build_d(read_path=WikiParagrahs.file_path_list[0], write_path=write_d_path, paragraph_limit=100000)
 

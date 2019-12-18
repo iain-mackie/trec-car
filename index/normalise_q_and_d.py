@@ -66,6 +66,7 @@ def normalise_d(read_path=write_d_path, write_path=write_d_norm_path):
 
                 except IndexError as error:
                     print('-----------------------------------')
+                    print('INDEX ERROR THROWN')
                     print(error)
                     print('line: {}'.format(l))
                     print('split line: {}'.format(split))

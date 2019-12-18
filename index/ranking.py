@@ -2,7 +2,7 @@
 from index.static import write_d_norm_path, write_q_norm_path, write_rank_path
 
 from rank_bm25 import BM25Okapi
-
+import time
 
 def get_norm_d(path=write_d_norm_path):
 
@@ -41,11 +41,14 @@ def retrieve_n_documents(read_path=write_q_norm_path, write_path=write_rank_path
         with open(write_path, 'w') as f_write:
 
             counter = 1
+            start = time.time()
 
             for l in f_read:
 
                 if counter % 100 == 0:
-                    print('{}/{} queries complete'.format(counter, len_q))
+                    end = time.time()
+                    print('{}/{} queries complete - {.2f} seconds'.format(counter, len_q, end - start))
+                    start = time.time()
 
 
                 l_split = str(l).split('\t')
