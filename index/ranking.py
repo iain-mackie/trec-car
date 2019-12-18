@@ -47,7 +47,7 @@ def retrieve_n_documents(read_path=write_q_norm_path, write_path=write_rank_path
 
                 if counter % 100 == 0:
                     end = time.time()
-                    print('{}/{} queries complete - {.2f} seconds'.format(counter, len_q, end - start))
+                    print('{}/{} queries complete - {:.2f} seconds'.format(counter, len_q, end - start))
                     start = time.time()
 
 
