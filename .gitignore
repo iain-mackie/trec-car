@@ -2,5 +2,5 @@
 .pytest_cache
 .ipynb_checkpoints
 *.pyc
-file_filer/*
+file_file/*
 data_download/test_data_download/test_file_folder/*
