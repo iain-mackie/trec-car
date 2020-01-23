@@ -7,11 +7,9 @@ from index.build_q_and_d import build_q, build_d
 from index.normalise_q_and_d import normalise_q, normalise_d
 from index.ranking import retrieve_n_documents
 
+import os
 
-if __name__ == "__main__":
-
-    import os
-
+def anserini_hex_check():
     in_path = os.path.join(os.getcwd(), 'train.topics')
     out_path = os.path.join(os.getcwd(), 'train_out.topics')
 
@@ -33,7 +31,7 @@ if __name__ == "__main__":
                 counter = 0
                 for l in line:
                     if l == '%':
-                        if line[counter+1:counter + 3] in hex_utc8:
+                        if line[counter + 1:counter + 3] in hex_utc8:
                             new_line += l
                         else:
                             print(line[counter:counter + 3])
@@ -44,6 +42,29 @@ if __name__ == "__main__":
                 f.write(new_line)
             else:
                 f.write(line)
+
+def galago_numbers():
+    in_path = os.path.join(os.getcwd(), 'test.topics')
+    out_path = os.path.join(os.getcwd(), 'test_galago.topics')
+    with open(in_path, "r") as f:
+        lines = f.readlines()
+
+    with open(out_path, "w") as f:
+        counter = 0
+        for line in lines:
+            new_line = str(counter) + "\t" + line
+            print(new_line)
+            f.write(new_line)
+            counter += 1
+
+
+
+if __name__ == "__main__":
+    galago_numbers()
+
+
+
+
 
 
 
