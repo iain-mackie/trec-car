@@ -116,9 +116,11 @@ def format_query(q, preprocess=True):
             word = str(w)
             if word not in stopwords_list:
                 if len(new_q) == 0:
-                    new_q += stemmer.stem(word)
+                    # new_q += stemmer.stem(word)
+                    new_q += word
                 else:
-                    new_q += " " + stemmer.stem(word)
+                    # new_q += " " + stemmer.stem(word)
+                    new_q += " " + word
 
         return new_q
     else:
@@ -219,7 +221,7 @@ if __name__ == "__main__":
     #anserini_hex_check_topics()
     #anserini_hex_check_qrels()
     qrels_path = os.path.join(os.getcwd(), 'test.pages.cbor-hierarchical.qrels')
-    file_name = 'galago_test_tree_hierarchical_preprocessed'
+    file_name = 'galago_test_tree_hierarchical_preprocessed_no_stemming'
     get_galago_topics(qrels_path=qrels_path, file_name=file_name)
     #print(format_query('sfn.4rg /dg dfAS%20DVB KDSAF u,s, . DV 4378Q47~}sa~}f)*£QUTRNL2351'))
 
