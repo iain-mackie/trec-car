@@ -7,6 +7,10 @@ from index.build_q_and_d import build_q, build_d
 from index.normalise_q_and_d import normalise_q, normalise_d
 from index.ranking import retrieve_n_documents
 
+from krovetzstemmer import Stemmer
+
+from nltk.corpus import stopwords
+
 import os
 import re
 import json
@@ -77,7 +81,6 @@ def anserini_hex_check_qrels():
                 f.write(new_line)
 
 
-
 def galago_numbers():
     in_path = os.path.join(os.getcwd(), 'test.topics')
     out_path = os.path.join(os.getcwd(), 'test_galago.topics')
@@ -93,18 +96,42 @@ def galago_numbers():
             #f.write(new_line)
             counter += 1
 
-def format_query(q):
+
+########################################################################
+########################################################################
+########################################################################
+
+def format_query(q, preprocess=True):
+    stopwords_list = stopwords.words('english')
+    stemmer = Stemmer()
+
     q = q[7:]
     q = q.replace('%20', ' ')
     q = q.replace('/', ' ')
     q = q.replace('-', ' ')
-    return re.sub(r'[^A-Za-z0-9 ]+', '', q).lower()
+    text = re.sub(r'[^A-Za-z0-9 ]+', '', q).lower()
+    if preprocess:
+        new_q = ''
+        for w in text.split():
+            word = str(w)
+            if word not in stopwords_list:
+                if len(new_q) == 0:
+                    new_q += stemmer.stem(word)
+                else:
+                    new_q += " " + stemmer.stem(word)
+
+        return new_q
+    else:
+        return text
+
 
 def get_queries(qrels_path):
 
+    print('reading queries')
     with open(qrels_path, "r") as f:
         qrels = f.readlines()
 
+    print('preprocessing queries')
     ids = []
     texts = []
     for qrel in qrels:
@@ -123,26 +150,38 @@ def write_json(d, path):
 
 def get_galago_topics(qrels_path, file_name):
 
-
     query_data = get_queries(qrels_path=qrels_path)
+
+    print('building galago json')
 
     bm25_queries = []
     bm25_rm3_queries = []
     ql_queries = []
+
     for q in query_data:
-        bm25_queries.append({'number': str(q[0]),'text': "#bm25({q})".format(q=q[1])})
-        bm25_rm3_queries.append({'number': str(q[0]), 'text': "#rm(#bm25({q}))".format(q=q[1])})
-        ql_queries.append({'number': str(q[0]), 'text': "{q}".format(q=q[1])})
+
+        if len(q[1]) > 0:
+
+            bm25_text = "#combine("
+            ql_text = "#combine("
+
+            for w in q[1].split():
+                bm25_text += " #bm25:K=0.9:b=0.4({w}) ".format(w=w)
+                ql_text += " #dirichlet:mu=1000({w}) ".format(w=w)
+
+            bm25_text += ")"
+            ql_text += ")"
+            bm25_rm3_text = "#rm( " + bm25_text + " )"
+
+            bm25_queries.append({'number': str(q[0]),'text': bm25_text})
+            bm25_rm3_queries.append({'number': str(q[0]), 'text': bm25_rm3_text})
+            ql_queries.append({'number': str(q[0]), 'text': ql_text})
 
     ###### BM25 ######
 
     bm25_config = {
         "casefold": True,
         "verbose": True,
-        "requested": 10,
-        "index": "/home/imackie/Documents/trec_car/index/galago_paragraphs",
-        "rmstopwords": "rmstop",
-        "rmStemmer": "org.lemurproject.galago.core.parse.stem.KrovetzStemmer",
         "queries": bm25_queries
     }
 
@@ -152,8 +191,7 @@ def get_galago_topics(qrels_path, file_name):
 
     bm25_rm3_config = {
         "casefold": True,
-        "requested": 10,
-        "index": "/home/imackie/Documents/trec_car/index/galago_paragraphs",
+        "verbose": True,
         "relevanceModel": "org.lemurproject.galago.core.retrieval.prf.RelevanceModel3",
         "fbDocs": 10,
         "fbTerm": 10,
@@ -169,10 +207,7 @@ def get_galago_topics(qrels_path, file_name):
 
     ql_config = {
         "casefold": True,
-        "requested": 10,
-        "index": "/home/imackie/Documents/trec_car/index/galago_paragraphs",
-        "rmstopwords": "rmstop",
-        "rmStemmer": "org.lemurproject.galago.core.parse.stem.KrovetzStemmer",
+        "verbose": True,
         "queries": ql_queries
     }
 
@@ -184,9 +219,10 @@ if __name__ == "__main__":
     #anserini_hex_check_topics()
     #anserini_hex_check_qrels()
     qrels_path = os.path.join(os.getcwd(), 'test.pages.cbor-hierarchical.qrels')
-    file_name = 'galago_test_tree_hierarchical'
+    file_name = 'galago_test_tree_hierarchical_preprocessed'
     get_galago_topics(qrels_path=qrels_path, file_name=file_name)
     #print(format_query('sfn.4rg /dg dfAS%20DVB KDSAF u,s, . DV 4378Q47~}sa~}f)*£QUTRNL2351'))
+
 
 
 

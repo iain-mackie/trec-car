@@ -6,3 +6,4 @@ nltk
 # snorkel torch
 # ipykernel
 #pyserini
+krovetzstemmer
