@@ -1,4 +1,4 @@
-numpy==1.15s
+numpy==1.22.0
 pytest==5.3.1
 cbor==1.0
 rank_bm25
